@@ -1,10 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const DisplayBlogScreen = () => {
+const DisplayBlogScreen = (props) => {
+  const id = props.navigation.getParam("id");
+  
+  console.log(id)
   return (
     <View>
-      <Text> DisplayBlog Screen</Text>
+      <Text> DisplayBlog Screen {id}</Text>
     </View>
   );
 };
