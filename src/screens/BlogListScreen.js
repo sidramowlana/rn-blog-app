@@ -16,7 +16,7 @@ const BlogListScreen = ({ navigation }) => {
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
   return (
     <>
-      <Button title="Add Post" onPress={() => addBlogPost()} />
+      <Text style={styles.textStyle}>Your Blogs</Text>
       <FlatList
         data={state}
         keyExtractor={(blogPost) => blogPost.title}
@@ -50,15 +50,17 @@ const BlogListScreen = ({ navigation }) => {
 };
 
 // to do any changes in the header
-BlogListScreen.navigationOptions = ({navigation}) => {
+BlogListScreen.navigationOptions = ({ navigation }) => {
   return {
-    headerRight: () => <TouchableOpacity
+    headerRight: () => (
+      <TouchableOpacity
         onPress={() => {
           navigation.navigate("CreateBlogScreen");
-        }} 
+        }}
       >
         <Feather name="plus" style={styles.featherPlus} />
       </TouchableOpacity>
+    ),
   };
 };
 
@@ -80,7 +82,12 @@ const styles = StyleSheet.create({
   featherPlus: {
     fontSize: 24,
     color: "black",
-    marginRight: 20  },
+    marginRight: 20,
+  },
+  textStyle: {
+    fontSize: 30,
+    textAlign: "center",
+  },
 });
 
 export default BlogListScreen;
