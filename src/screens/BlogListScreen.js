@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Context } from "../context/BlogContext";
 import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 const BlogListScreen = ({ navigation }) => {
   // const blogPostsList = useContext(BlogContext);
@@ -21,31 +22,44 @@ const BlogListScreen = ({ navigation }) => {
         keyExtractor={(blogPost) => blogPost.title}
         renderItem={({ item }) => {
           return (
-            <View style={styles.viewStyle}>
-              <TouchableOpacity
-                onPress={() => {
-                  // viewABlogPost(item.id);
-                  navigation.navigate("DisplayBlogScreen",{id:item.id})
-                }}
-              >
+            <TouchableOpacity
+              onPress={() => {
+                // viewABlogPost(item.id);
+                navigation.navigate("DisplayBlogScreen", { id: item.id });
+              }}
+            >
+              <View style={styles.viewStyle}>
                 <Text>
                   {item.title}, {item.id}
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  deleteBlogPost(item.id);
-                  console.log(item.id);
-                }}
-              >
-                <AntDesign name="delete" style={styles.antDesignStyle} />
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    deleteBlogPost(item.id);
+                    console.log(item.id);
+                  }}
+                >
+                  <AntDesign name="delete" style={styles.antDesignStyle} />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
     </>
   );
+};
+
+// to do any changes in the header
+BlogListScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerRight: () => <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("CreateBlogScreen");
+        }} 
+      >
+        <Feather name="plus" style={styles.featherPlus} />
+      </TouchableOpacity>
+  };
 };
 
 const styles = StyleSheet.create({
@@ -63,6 +77,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "black",
   },
+  featherPlus: {
+    fontSize: 24,
+    color: "black",
+    marginRight: 20  },
 });
 
 export default BlogListScreen;

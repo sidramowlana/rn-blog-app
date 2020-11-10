@@ -1,14 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const AddBlogScreen = () => {
+const CreateBlogScreen = () => {
   return (
     <View>
-      <Text> AddBlog Screen</Text>
+      <Text> CreateBlog Screen</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({});
 
-export default AddBlogScreen;
+export default CreateBlogScreen;
