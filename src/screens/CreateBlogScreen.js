@@ -5,7 +5,16 @@ import { Context } from "../context/BlogContext";
 
 const CreateBlogScreen = ({ navigation }) => {
   const { addBlogPost } = useContext(Context);
-  return <BlogPostForm />;
+  return (
+    <BlogPostForm
+    buttonTtitle="Create Blog"
+      onSubmit={(title, content) => {
+        addBlogPost(title, content, () => {
+          navigation.navigate("BlogListScreen");
+        });
+      }}
+    />
+  );
 };
 
 const styles = StyleSheet.create({});
