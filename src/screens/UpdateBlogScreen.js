@@ -14,7 +14,7 @@ const UpdateBlogScreen = (props) => {
       initialValues={{ title: blogPost.title, content: blogPost.content }}
       buttonTtitle="Update Blog"
       onSubmit={(title, content) => {
-        editBlogPost(id, title, content);
+        editBlogPost(id, title, content, () => props.navigation.pop());
       }}
     />
   );

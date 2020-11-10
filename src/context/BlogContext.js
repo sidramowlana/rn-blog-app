@@ -29,7 +29,10 @@ const addBlogPost = (dispatch) => {
       type: "addBlogPost",
       payload: { title: title, content: content },
     });
-    callback();
+    if (callback) {// if there is a callback then call so sometimes addblogpost() can be called in some other screen where no call back is called in that case it will throw an error.
+      // So this solution is used to ivercome that error      
+      callback();
+    }
   };
 };
 
@@ -40,11 +43,14 @@ const deleteBlogPost = (dispatch) => {
 };
 
 const editBlogPost = (dispatch) => {
-  return (id, title, content) => {
+  return (id, title, content, callback) => {
     dispatch({
       type: "editBlogPost",
       payload: { id: id, title: title, content: content },
     });
+    if (callback) {
+      callback();
+    }
   };
 };
 export const { Context, Provider } = createDataContext(
