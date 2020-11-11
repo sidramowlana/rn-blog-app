@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,20 @@ import { Feather } from "@expo/vector-icons";
 
 const BlogListScreen = ({ navigation }) => {
   // const blogPostsList = useContext(BlogContext);
-  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+  const { state, addBlogPost, deleteBlogPost, getAllBlogPosts } = useContext(
+    Context
+  );
+
+  useEffect(() => {
+    getAllBlogPosts();
+    const listener = navigation.addListener("didFocus", () => {
+      getAllBlogPosts();
+    });
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
   return (
     <>
       <Text style={styles.textStyle}>Your Blogs</Text>
